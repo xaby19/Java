@@ -1,19 +1,37 @@
+
+
+import java.util.Scanner;
+
 public class Main {
+
     public static void main(String[] args) {
-        System.out.println();
-        int numFilas = 9;// lo defino con nueve ya que no uso el scanner y nos pide que sea de 9 "*"s
+        /*
+            Ejemplo n = 5
+             _____*
+             ____***
+             ___*****
+             __*******
+             _*********
+             ***********
+         */
 
-        for (int numBlancos = 0, numAsteriscos =(numFilas*2) - 1; numAsteriscos > 0 ; numBlancos++, numAsteriscos -= 2){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Dime un número y te pinto una pirámide de ese tamaño: ");
+        int n = scanner.nextInt();
+        int rows = n + 1;
 
-            for (int i = 0; i < numBlancos ; i++) {
-                System.out.print(" ");
-            }
-            for (int j = numAsteriscos; j>0; j--){
-
-                System.out.print("*");
-            }
-
+        for (int row = 0; row < rows; row++) {
+            printSpaces(n, row);
+            printStars(row,n);
             System.out.println();
         }
+    }
+
+    private static void printSpaces(int n, int row) {
+        System.out.print(" ".repeat(n + row) );
+    }
+
+    private static void printStars(int row,int n) {
+        System.out.print("*".repeat(n -row) + "*".repeat(n -row));
     }
 }
