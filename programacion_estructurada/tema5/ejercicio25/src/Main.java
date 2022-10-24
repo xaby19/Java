@@ -1,36 +1,35 @@
 import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
-        int digits = getNumberOfDigits(n);
-        int position = (int) Math.pow(10, digits);// hace que las posiciones sean en base 10
-        int result = 0;
 
-        while (digits > 0) {
-            int digit = n % 10;
-            n /= 10;
-            position /= 10;
-            digits--;
-            result += (digit * position);
-        }
-
-        System.out.println(result);
+        System.out.println("Dime un numero");
+        int numero = Integer.parseInt(scanner.next());
+        int[] numeroArray= new int[numeroIntroducido(numero)];
     }
-    public static int getNumberOfDigits (int n) {
-        if (n != 0){
-            int count = 0;
-            int current = Math.abs(n);
+    static int[] numeroAlreves(int[] numeroArray, int numero){
+        int [] numeroAlreves = new int[numeroIntroducido(numero)];
 
-            while (current > 0) {
-                current = current / 10;
-                count++;
-            }
+
+        for (int i = 0; i < numeroArray.length-1 ; i++) {
+
+        }
+        return numeroAlreves;
+    }
+    static int numeroIntroducido(int numero){
+                int count = 0;
+
+                if (numero == 0){
+                    count   = 1;
+                }
+                else {
+                    while (numero != 0) {
+                        numero /= 10;
+                        count++;
+                    }
+
+                }
 
             return count;
-        } else {
-            return 1;
-        }
     }
 }
