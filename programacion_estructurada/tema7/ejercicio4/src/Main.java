@@ -1,48 +1,53 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        int [] numerosArray = new int[20];
-       rellenaArrays(numerosArray);
-       EscribeArray(numerosArray);
+        int [] array = creaArrayIntRandom(20);
+        int [] cuadradoArray = Arraycuadrado(array);
+        int [] cuboArray= Arraycubo(array);
 
-        int [] cuadradoArray = new int[20];
-        Arraycuadrado(cuadradoArray);
-        EscribeArray(cuadradoArray);
+        System.out.println("n\t\t\t n^2\t\t\t\t n^3\t\t\t\t\t\t");
 
-        int [] cuboArray= new int[20];
-        Arraycubo(cuboArray);
-        EscribeArray(cuboArray);
+        for (int i = 0; i < array.length ; i++) {
+            System.out.printf("%s\t\t\t %s\t\t\t\t %s\t\t\t\t\t\t \n", array[i], cuadradoArray[i], cuboArray[i]);
+        }
+
     }
-    static int[] rellenaArrays(int[] arr){//este rellena array rellena empezando por detrás
-
-        int length = arr.length;
-
+    static int[] creaArrayIntRandom(int size){//este rellena array rellena empezando por detrás
+        int[] array = new int[size];
+        int length = array.length;
+        Random random = new Random();
         for (int i = 0; i < length ; i++) {
 
-
-            arr[i] = (int)(Math.random() * 100 + 1);
+            int n = random.nextInt(101);
+            array[i] = n;
 
 
         }
-        return arr;
+        return array;
     }
-    static int[] Arraycuadrado(int[] rellenaArrays){
-        int [] cuadradoArray = new int[20];
+    static int[] Arraycuadrado(int[] array){
+        int [] result = new int[array.length];
 
-        int length = rellenaArrays.length;
+        int length = array.length;
         for (int i = 0; i < length ; i++) {
-            cuadradoArray[i] = (rellenaArrays[i] * rellenaArrays[i]);
+
+            int n = array[i];
+            result[i] = ((int) Math.pow(n,2));
         }
-        return cuadradoArray;
+        return result;
     }
-    static int[] Arraycubo(int[] rellenaArrays){
-        int [] cuboArray= new int[20];
-        int length = rellenaArrays.length;
+    static int[] Arraycubo(int[] array){
+        int [] result = new int[array.length];
+
+        int length = array.length;
         for (int i = 0; i < length ; i++) {
-            cuboArray[i] = (rellenaArrays[i] *rellenaArrays[i] * rellenaArrays[i]);
+
+            int n = array[i];
+            result[i] = ((int) Math.pow(n,3));
         }
-        return cuboArray;
+        return result;
     }
 
     static void EscribeArray(int [] arr){
