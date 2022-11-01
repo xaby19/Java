@@ -8,12 +8,12 @@ public class Main {
         int[] leeArray = getLeeArray(100);
         EscribeArray(leeArray);
 
-        System.out.println("Dime el numero que quieres sulbstituir (0-20");
+        System.out.print("Dime el numero que quieres sulbstituir (0-20): ");
         int numeroASubstituir = scanner.nextInt();
-        System.out.println("Dime el numero que sustituira al primer numero (0-20)");
+        System.out.print("Dime el numero que sustituira al primer numero (0-20): ");
         int numeroSubstituto = scanner.nextInt();
-        String intercambio= ItercambioNumero(leeArray, numeroASubstituir, numeroSubstituto);
-        LeeString(intercambio);
+
+        ItercambioNumero(leeArray, numeroASubstituir, numeroSubstituto);
     }
 
     public static int[] getLeeArray( int size) {
@@ -29,19 +29,20 @@ public class Main {
 
         return array;
     }
-    public static String ItercambioNumero(int[] array, int numeroASubstituir, int numeroSubstituto ){
-        String result = null;
+    public static void ItercambioNumero(int[] array, int numeroASubstituir, int numeroSubstituto ){
+        StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i <array.length ; i++) {
-
+            int n = array[i];
             if (array[i] == numeroASubstituir){
-                array[i]= numeroSubstituto;
-
-                result = "\"" + array + "\"";
+             stringBuilder.append("\"").append(numeroSubstituto).append("\"");
+            }
+            else {
+                stringBuilder.append(" ").append(n).append(" ");
             }
 
         }
+        System.out.print(stringBuilder);
 
-        return  result;
     }
 
     public static void EscribeArray(int[] array){
@@ -49,14 +50,9 @@ public class Main {
         for (int i = 0; i < array.length; i++) {
 
             System.out.print(array[i] + " ");
-        }
-    }
-    public static void LeeString(String intercambio){
 
-        for (int i = 0; i <intercambio.length() ; i++) {
-
-            System.out.print(intercambio[i] + " ");
         }
+        System.out.println();
     }
 
 }
