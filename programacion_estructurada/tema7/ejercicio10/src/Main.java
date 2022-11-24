@@ -2,77 +2,42 @@ import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-        int[] arrayRandomInt = getArrayRandomInt(20);
-       ArrayEventFerst(ArrayEvent(arrayRandomInt, CountEvent(arrayRandomInt),(ArrayOdd(arrayRandomInt,CountOdd(arrayRandomInt));
+       int[] getArray = GetArrayRandom(20);
+       WritenArray(getArray);
+        System.out.println();
+       int[] firstEvent = EventFirst(getArray);
+       WritenArray(firstEvent);
     }
+    public static int[] GetArrayRandom(int size){
+        Random random = new Random();
+        int[] result = new int[size];
 
-    public static int[] getArrayRandomInt(int size) {
-        int[] arrayRandom = new int[size];
-        int length = arrayRandom.length;
-        Random random= new Random();
-
-        for (int i = 0; i < length ; i++) {
-            arrayRandom[i] = random.nextInt(101);
+        for (int i = 0; i < result.length ; i++) {
+            int n = random.nextInt(100) +1;
+            result[i] = n;
         }
-        return arrayRandom;
+        return result;
     }
-
-    public static int CountEvent(int[] arrayRandom){
-        int countEvent = 0;
-        for (int i = 0; i < arrayRandom.length -1 ; i++) {
-            if (arrayRandom[i] % 2 == 0) {
-                countEvent++;
+    public static int[] EventFirst(int[] getArray){
+        int length = getArray.length;
+        for (int i = 0; i < length; i++) {
+            for (int j = 1; j < (length -i) ; j++) {
+                if (getArray[j] % 2 == 0 && getArray[j - 1] % 2 != 0 ){
+                    int temp = getArray[j -1];
+                    getArray[j -1] = getArray[j];
+                    getArray[j] = temp;
+                }
             }
         }
-
-        return countEvent;
+        return getArray;
     }
-    public static int CountOdd(int[] arrayRandom){
-        int countOdd = 0;
-
-        for (int i = 0; i < arrayRandom.length -1 ; i++) {
-            if (arrayRandom[i] % 2 != 0) {
-                countOdd++;
-            }
-        }
-
-        return countOdd;
-    }
-
-    public static int[] ArrayEvent(int[] arrayRandom, int CountEvent){
-
-        int[] arrayEvent = new int[CountEvent];
-
-
-        for (int i = 0; i < arrayEvent.length ; i++) {
-
-            if (arrayRandom[i] % 2 == 0) {
-                arrayEvent[i] = arrayRandom[i];
-            }
+    public  static void WritenArray(int[] getArray){
+        for (int i = 0; i < getArray.length ; i++) {
+            System.out.print(getArray[i] + " ");
 
         }
-        return arrayEvent;
     }
 
-    public static int[] ArrayOdd(int[] arrayRandom, int CountOdd){
 
-        int[] arrayOdd = new int[CountOdd];
-
-
-        for (int i = 0; i < arrayOdd.length ; i++) {
-
-            if (arrayRandom[i] % 2 == 0) {
-                arrayOdd[i] = arrayRandom[i];
-            }
-
-        }
-        return arrayOdd;
-    }
-    public static void ArrayEventFerst(int[]ArrayEvent, int[] ArrayOdd){
-
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(ArrayEvent).append(ArrayOdd);
-        System.out.println(stringBuilder);
-    }
 
 }
