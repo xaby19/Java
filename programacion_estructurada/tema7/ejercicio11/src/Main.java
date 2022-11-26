@@ -2,77 +2,53 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        int [] arrayOfNumber = getArrayOfNumber(10);
-        int[] arrayposition = ArrayPosition(arrayOfNumber);
-        int[] arrayPrimeNum = getArrayPrimeNum(arrayOfNumber, CountPrime(arrayOfNumber));
-        EscribeArray(arrayposition);
+        int[] arrayOfNumber = GetArrayOfNumber(10);
+        Position(arrayOfNumber);
         EscribeArray(arrayOfNumber);
-        System.out.println();
-        EscribeArray(arrayposition);
-        EscribeArray(arrayPrimeNum);
+        int[] firstPrime = FirsPrime(arrayOfNumber);
+        Position(firstPrime);
+        EscribeArray(firstPrime);
     }
+    public static int[]  GetArrayOfNumber(int size){
+        Scanner scaner = new Scanner(System.in);
+        int[] arraynumber = new int[size];
+         int lenthg = arraynumber.length;
 
-    public static int[] getArrayPrimeNum(int[] arrayOfNumber, int CountPrime) {
-        int[] arrayPrimerNum = new int[arrayOfNumber.length];
-        for (int i = 0, j = 2, k = arrayOfNumber.length - 1; i <= arrayOfNumber.length ; i++) {
-
-            if (!(i==2 || i == 4)){
-                if (CountPrime(i) <= 2) {
-                   arrayPrimerNum[i] = arrayOfNumber[i];
-                   j++;
-                }
-
-            }
-            else if (i == 2){
-                arrayPrimerNum[k] = arrayOfNumber[i];
-                k--;
-            }
-        }
-
-        return arrayPrimerNum;
-
-    }
-
-    public static int CountPrime(int[] arrayOfNum){
-        int num = 0;
-        int count = 0;
-        for (int i = 2, j = 0; i <= num; i++) {
-            num = arrayOfNum[j];
-            if (num % i == 0) {
-                count++;
-                j++;
-
-            }
-        }
-        return count;
-    }
-
-    public static int[] getArrayOfNumber(int size) {
-        Scanner scanner = new Scanner(System.in);
-        int[] array = new int[size];
-        int length = array.length;
-
-        for (int i = 0; i < length ; i++) {
+        for (int i = 0; i < lenthg ; i++) {
             System.out.print("Dime un numero: ");
-            array[i] = scanner.nextInt();
+            int num = scaner.nextInt();
+            arraynumber[i] = num;
         }
-        return array;
+        return arraynumber;
     }
-    public static int[] ArrayPosition(int[] array){
-        int [] position = new int [array.length];
-        for (int i = 0; i < array.length ; i++) {
-           position[i] = i;
+    public static int[] FirsPrime(int[] arrayofNumber){
+        int lenthg = arrayofNumber.length;
+        int aux = 2;
+        for (int i = 0; i < lenthg ; i++) {
+            for (int j = 1; j < lenthg -i ; j++) {
+                if (arrayofNumber[j -1] % aux  == 0 && arrayofNumber[j] % aux  != 0 ){
+                    int temp =arrayofNumber[j];
+                    arrayofNumber[j] = arrayofNumber[j - 1];
+                    arrayofNumber[j -1] = temp;
+
+                }
+            }
+
         }
-        return position;
+        return arrayofNumber;
+    }
+    public static void Position (int [] array){
+        for (int i = 0; i < array.length ; i++) {
+            System.out.print(i +" ");
+        }
     }
     public static void EscribeArray( int[] array){
-        for (int i = 0; i < array.length; i++) {
+        for (int j : array) {
 
-            System.out.print(array[i] + " ");
+            System.out.print(j + " ");
 
         }
         System.out.println();
 
     }
-
 }
